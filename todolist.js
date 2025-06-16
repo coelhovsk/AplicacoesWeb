@@ -1,29 +1,57 @@
-document.getElementById('addTaskBtn').addEventListener('click', function () {
+document.addEventListener('DOMContentLoaded', function() {
+    loadTasks();
+});
+
+document.getElementById('addTaskBtn').addEventListener('click', function() {
     const taskInput = document.getElementById('taskInput');
     const taskText = taskInput.value.trim();
-
     
     if (taskText !== '') {
-        const taskList = document.getElementById('taskList');
-        const newTask = document.createElement('li');
-        newTask.className = 'list-group-item d-flex justify-content-between align-items-center';
-
-        newTask.innerHTML = `
-                    ${taskText}
-                    <button class="btn btn-sm btn-danger">Remover</button>
-                `;
-
-        taskList.appendChild(newTask);
+        addTaskToDOM(taskText);
+        saveTasks();
         taskInput.value = '';
-
-        newTask.querySelector('button').addEventListener('click', function () {
-            newTask.remove();
-        });
     }
 });
 
-document.getElementById('taskInput').addEventListener('keypress', function (e) {
+document.getElementById('taskInput').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
         document.getElementById('addTaskBtn').click();
     }
 });
+
+function addTaskToDOM(taskText) {
+    const taskList = document.getElementById('taskList');
+    const newTask = document.createElement('li');
+    newTask.className = 'list-group-item d-flex justify-content-between align-items-center';
+    
+    newTask.innerHTML = `
+        ${taskText}
+        <button class="btn btn-sm btn-danger">Remover</button>
+    `;
+    
+    taskList.appendChild(newTask);
+    
+    newTask.querySelector('button').addEventListener('click', function() {
+        newTask.remove();
+        saveTasks();
+    });
+}
+
+// salvar
+function saveTasks() {
+    const tasks = [];
+    document.querySelectorAll('#taskList li').forEach(taskItem => {
+        tasks.push(taskItem.textContent.trim().replace('Remover', ''));
+    });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+// carregar
+function loadTasks() {
+    const savedTasks = localStorage.getItem('tasks');
+    if (savedTasks) {
+        JSON.parse(savedTasks).forEach(taskText => {
+            addTaskToDOM(taskText);
+        });
+    }
+}
