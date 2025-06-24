@@ -1,5 +1,5 @@
 async function getData(type, id) {
-    // Mostra o loading
+    // mostra o loading
     document.getElementById('loading').style.display = 'block';
     document.getElementById('results').innerHTML = '';
 
@@ -11,7 +11,6 @@ async function getData(type, id) {
         console.error('Erro:', error);
         return null;
     } finally {
-        // Esconde o loading
         document.getElementById('loading').style.display = 'none';
     }
 }
@@ -57,28 +56,23 @@ function exibirDados(dados, tipo) {
 }
 
 async function buscarPersonagem() {
-    // Gera um ID aleatório entre 1 e 826 (total de personagens)
     const randomId = Math.floor(Math.random() * 826) + 1;
     const personagem = await getData('character', randomId);
     exibirDados(personagem, 'character');
 }
 
 async function buscarLocalizacao() {
-    // Gera um ID aleatório entre 1 e 126 (total de localizações)
     const randomId = Math.floor(Math.random() * 126) + 1;
     const localizacao = await getData('location', randomId);
     exibirDados(localizacao, 'location');
 }
 
 async function buscarEpisodio() {
-    // Gera um ID aleatório entre 1 e 51 (total de episódios)
     const randomId = Math.floor(Math.random() * 51) + 1;
     const episodio = await getData('episode', randomId);
     exibirDados(episodio, 'episode');
 }
 
-// Busca dados iniciais ao carregar a página
 window.onload = buscarPersonagem;
 
-// Ativa o link atual na navbar
 document.getElementById('rickLink').classList.add('active-nav');
