@@ -11,7 +11,7 @@ document.getElementById('addTaskBtn').addEventListener('click', function() {
         saveTasks();
         taskInput.value = '';
     }
-});
+}); 
 
 document.getElementById('taskInput').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {

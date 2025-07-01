@@ -14,7 +14,7 @@ async function getData(type, id) {
         document.getElementById('loading').style.display = 'none';
     }
 }
-
+ 
 function exibirDados(dados, tipo) {
     const resultsDiv = document.getElementById('results');
 
