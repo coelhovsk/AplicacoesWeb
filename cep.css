@@ -1,23 +1,47 @@
-
-
 body {
     font-family: Arial, sans-serif;
     background-color: #E6F4EA;
     display: flex;
-    justify-content: center;
-    height: 95vh;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+}
+
+.navbar {
+    padding: 0.5rem 1rem;
+}
+
+.navbar-brand {
+    white-space: nowrap;
+    margin-right: 1rem;
+}
+
+.navbar-nav {
+    flex-wrap: wrap;
+}
+
+.nav-item {
+    white-space: nowrap;
+}
+
+.container {
+    padding: 0 15px;
 }
 
 .tabelona {
-    text-align: center; /* Centraliza o conteúdo inline como a imagem */
+    text-align: center;
 }
 
 .tabelona img {
     width: 120px;
-    display: block;          /* Necessário para margin funcionar */
-    margin: 0 auto 20px auto; /* Centraliza e adiciona espaço abaixo */
+    display: block;
+    margin: 0 auto 20px auto;
 }
-
 
 .borda-verde {
     background-color: #ffffff;
@@ -28,6 +52,7 @@ body {
     width: 100%;
     max-width: 700px;
     box-sizing: border-box;
+    margin: 20px auto;
 }
 
 .tabelona h1 {
@@ -83,8 +108,27 @@ button#clearButton:hover {
     font-size: 0.9em;
 }
 
-
 .active-nav {
     font-weight: bold;
     color: #56b942 !important;
+}
+
+@media (max-width: 768px) {
+    .navbar-brand {
+        margin-right: 0;
+        padding-right: 0;
+    }
+
+    .navbar-nav {
+        margin-top: 0.5rem;
+    }
+
+    .nav-item {
+        padding: 0.25rem 0;
+    }
+
+    .borda-verde {
+        padding: 30px 20px;
+        margin: 15px auto;
+    }
 }
